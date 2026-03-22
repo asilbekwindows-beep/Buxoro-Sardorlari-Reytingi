@@ -432,7 +432,7 @@ body.dark .mni.on .ml{color:#16a05f}
         <option>Buxoro tumani</option><option>Kogon tumani</option><option>G'ijduvon tumani</option>
         <option>Shofirkon tumani</option><option>Vobkent tumani</option><option>Peshku tumani</option>
         <option>Romitan tumani</option><option>Jondor tumani</option><option>Qorovulbozor tumani</option>
-        <option>Olot tumani</option><option>Qorako'l tumani</option><option>Ganjidarya tumani</option>
+        <option>Olot tumani</option><option>Qorako'l tumani</option><option>Kogon shahar</option><option>Buxoro shahar</option>
       </select>
       <select class="fsel" id="stf" onchange="filt()">
         <option value="">Barcha holat</option>
@@ -575,7 +575,7 @@ body.dark .mni.on .ml{color:#16a05f}
               <option>Buxoro tumani</option><option>Kogon tumani</option><option>G'ijduvon tumani</option>
               <option>Shofirkon tumani</option><option>Vobkent tumani</option><option>Peshku tumani</option>
               <option>Romitan tumani</option><option>Jondor tumani</option><option>Qorovulbozor tumani</option>
-              <option>Olot tumani</option><option>Qorako'l tumani</option><option>Ganjidarya tumani</option>
+              <option>Olot tumani</option><option>Qorako'l tumani</option><option>Buxoro Shahar</option><option>Kogon Shahar</option>
             </select>
           </div>
           <div class="fg"><label class="flabel">Telegram @username</label><input class="finput" id="st" placeholder="@username"></div>
@@ -879,7 +879,7 @@ function gp(p){cp=p;rReyting()}
 
 // TUMANLAR
 function rTuman(){
-  var tumanlar=["Buxoro tumani","Kogon tumani","G'ijduvon tumani","Shofirkon tumani","Vobkent tumani","Peshku tumani","Romitan tumani","Jondor tumani","Qorovulbozor tumani","Olot tumani","Qorako'l tumani","Ganjidarya tumani"];
+  var tumanlar=["Buxoro tumani","Kogon tumani","G'ijduvon tumani","Shofirkon tumani","Vobkent tumani","Peshku tumani","Romitan tumani","Jondor tumani","Qorovulbozor tumani","Olot tumani","Qorako'l tumani","Buxoro shahar","Kogon shahar];
   var data=tumanlar.map(function(t){
     var ss=DB.sardorlar.filter(function(s){return s.region===t});
     var avg=ss.length?Math.round(ss.reduce(function(a,b){return a+b.score},0)/ss.length):0;
