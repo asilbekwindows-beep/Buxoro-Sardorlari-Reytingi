@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sardorlar Platformasi — Buxoro Viloyati</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Georgia,serif;background:#f0f4f1;color:#0d2018;transition:background .3s,color .3s}
+body.dark{background:#0a1612;color:#e8f5ee}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:#e4ede7}::-webkit-scrollbar-thumb{background:#0a5c36;border-radius:3px}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:#fff;border-bottom:2px solid #c8ddd0;display:flex;align-items:center;justify-content:space-between;padding:0 20px;height:60px;box-shadow:0 2px 12px rgba(10,92,54,.1)}
+body.dark nav{background:#132218;border-bottom-color:#1f3d2b}
+.nbrand{display:flex;align-items:center;gap:9px}
+.nlogo{width:36px;height:36px;background:linear-gradient(135deg,#0a5c36,#16a05f);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:17px;color:#fff;flex-shrink:0}
+.ntitle{font-size:.95rem;color:#0a5c36;font-weight:700;line-height:1.1}
+body.dark .ntitle{color:#16a05f}
+.nsub{font-size:.65rem;color:#6b8a78}
+.nlinks{display:flex;gap:2px}
+.nlinks button{background:none;border:none;cursor:pointer;padding:6px 11px;border-radius:7px;font-size:.79rem;color:#3a5a47;font-weight:600;font-family:Georgia,serif;transition:.2s}
+body.dark .nlinks button{color:#9bcfb0}
+.nlinks button:hover,.nlinks button.on{background:#e4ede7;color:#0a5c36}
+body.dark .nlinks button:hover,body.dark .nlinks button.on{background:#1a2e22;color:#16a05f}
+.nright{display:flex;align-items:center;gap:7px}
+.tbtn{width:44px;height:24px;background:#e4ede7;border:1px solid #c8ddd0;border-radius:12px;cursor:pointer;position:relative;outline:none}
+body.dark .tbtn{background:#1a2e22;border-color:#1f3d2b}
+.tdot{position:absolute;top:3px;left:3px;width:16px;height:16px;border-radius:50%;background:#0a5c36;display:flex;align-items:center;justify-content:center;font-size:9px;transition:.3s;color:#fff}
+body.dark .tdot{transform:translateX(20px);background:#16a05f}
+.abtn{padding:7px 13px;border-radius:8px;background:#0a5c36;color:#fff;border:none;cursor:pointer;font-size:.79rem;font-weight:700;font-family:Georgia,serif;transition:.2s}
+.abtn:hover{background:#16a05f}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,#0a5c36,#0d7a48 50%,#16a05f);color:#fff;padding:44px 24px 36px;overflow:hidden;position:relative}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 75% 50%,rgba(255,255,255,.07),transparent 60%)}
+.hero-in{max-width:1100px;margin:0 auto;position:relative}
+.hbadge{display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);border-radius:20px;padding:3px 13px;font-size:.75rem;margin-bottom:16px}
+.hero h1{font-size:clamp(1.6rem,3.5vw,2.8rem);font-weight:900;line-height:1.1;margin-bottom:10px}
+.hero p{font-size:.9rem;opacity:.85;max-width:480px;line-height:1.6;margin-bottom:24px}
+.hstats{display:flex;gap:26px;flex-wrap:wrap}
+.hsn{font-size:1.9rem;font-weight:900;color:#e8c84b;line-height:1}
+.hsl{font-size:.72rem;opacity:.75;margin-top:2px}
+
+/* NOTIF BANNER */
+.notif-bar{display:none;background:linear-gradient(90deg,#1565C0,#1976D2);color:#fff;padding:10px 24px;font-size:.83rem;align-items:center;justify-content:space-between;gap:12px}
+.notif-bar.on{display:flex}
+.notif-close{background:rgba(255,255,255,.2);border:none;color:#fff;cursor:pointer;border-radius:50%;width:22px;height:22px;font-size:.8rem;display:flex;align-items:center;justify-content:center}
+
+/* PAGE */
+.page{max-width:1200px;margin:0 auto;padding:32px 20px}
+.view{display:none}.view.on{display:block}
+.stitle{font-size:1.4rem;font-weight:800;color:#0d2018;margin-bottom:5px;display:flex;align-items:center;gap:7px}
+body.dark .stitle{color:#e8f5ee}
+.ssub{color:#6b8a78;font-size:.85rem;margin-bottom:22px}
+
+/* STAT CARDS */
+.sg{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:13px;margin-bottom:32px}
+.sc{background:#fff;border:1px solid #d1e0d7;border-radius:13px;padding:18px;box-shadow:0 2px 10px rgba(10,92,54,.08);position:relative;overflow:hidden;transition:.25s}
+body.dark .sc{background:#132218;border-color:#1f3d2b}
+.sc::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#0a5c36,#16a05f)}
+.sc:hover{transform:translateY(-3px);box-shadow:0 6px 18px rgba(10,92,54,.14)}
+.sc-icon{font-size:1.4rem;margin-bottom:7px}
+.sc-num{font-size:1.8rem;font-weight:900;color:#0a5c36}
+body.dark .sc-num{color:#16a05f}
+.sc-label{font-size:.73rem;color:#6b8a78;margin-top:2px}
+
+/* PODIUM */
+.podium{display:flex;align-items:flex-end;justify-content:center;gap:13px;margin-bottom:36px;flex-wrap:wrap}
+.pc{border-radius:13px;padding:20px 16px;text-align:center;box-shadow:0 4px 18px rgba(0,0,0,.12);transition:.25s;min-width:180px;cursor:default}
+.pc:hover{transform:translateY(-6px)}
+.pc.gold{background:linear-gradient(145deg,#fffaec,#fdf3c0);border:2px solid #e8c84b;min-height:235px;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.pc.silver{background:linear-gradient(145deg,#f5f5f5,#e8e8e8);border:2px solid #b0b0b0;min-height:210px;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.pc.bronze{background:linear-gradient(145deg,#fdf0e8,#f5d9c0);border:2px solid #cd7f32;min-height:195px;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.prank{font-size:1.9rem;margin-bottom:5px}
+.pavatar{width:64px;height:64px;border-radius:50%;object-fit:cover;margin:0 auto 9px;border:3px solid rgba(255,255,255,.8);box-shadow:0 3px 10px rgba(0,0,0,.12);display:flex;align-items:center;justify-content:center;font-size:1.6rem;background:linear-gradient(135deg,#0a5c36,#16a05f);color:#fff}
+.pname{font-size:.93rem;font-weight:800;color:#1a1a1a}
+.pregion{font-size:.73rem;color:#555;margin-top:2px}
+.pscore{font-size:.8rem;font-weight:700;color:#0a5c36;background:rgba(10,92,54,.1);border-radius:6px;padding:3px 9px;margin-top:6px;display:inline-block}
+.tgbtn{margin-top:8px;padding:6px 12px;border-radius:8px;background:#2196F3;color:#fff;border:none;cursor:pointer;font-size:.74rem;font-weight:700;font-family:Georgia,serif;transition:.2s;text-decoration:none;display:inline-flex;align-items:center;gap:4px}
+.tgbtn:hover{background:#1565C0;transform:scale(1.04)}
+
+/* REYTING TABLE */
+.rcontrols{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:14px;align-items:center}
+.sinput{flex:1;min-width:160px;padding:9px 13px;border-radius:9px;border:1px solid #d1e0d7;background:#fff;color:#0d2018;font-size:.85rem;outline:none;transition:.2s;font-family:Georgia,serif}
+body.dark .sinput{background:#132218;border-color:#1f3d2b;color:#e8f5ee}
+.sinput:focus{border-color:#0a5c36}
+.fsel{padding:9px 11px;border-radius:9px;border:1px solid #d1e0d7;background:#fff;color:#0d2018;font-size:.81rem;cursor:pointer;outline:none;font-family:Georgia,serif}
+body.dark .fsel{background:#132218;border-color:#1f3d2b;color:#e8f5ee}
+.rbtn{padding:9px 13px;border-radius:9px;border:1px solid #d1e0d7;background:#fff;color:#0d2018;font-size:.81rem;cursor:pointer;font-family:Georgia,serif;font-weight:600;transition:.2s}
+body.dark .rbtn{background:#132218;border-color:#1f3d2b;color:#e8f5ee}
+.rbtn:hover{background:#0a5c36;color:#fff;border-color:#0a5c36}
+.rbtn.on{background:#0a5c36;color:#fff;border-color:#0a5c36}
+.twrap{background:#fff;border:1px solid #d1e0d7;border-radius:13px;overflow:hidden;box-shadow:0 2px 10px rgba(10,92,54,.08)}
+body.dark .twrap{background:#132218;border-color:#1f3d2b}
+.rtable{width:100%;border-collapse:collapse}
+.rtable thead tr{background:#f0f4f1;border-bottom:2px solid #d1e0d7}
+body.dark .rtable thead tr{background:#1a2e22;border-bottom-color:#1f3d2b}
+.rtable th{padding:10px 12px;text-align:left;font-size:.72rem;font-weight:700;color:#6b8a78;text-transform:uppercase;letter-spacing:.4px}
+.rtable tbody tr{border-bottom:1px solid #e4ede7;background:#fff;transition:.2s}
+body.dark .rtable tbody tr{background:#132218;border-bottom-color:#1f3d2b}
+.rtable tbody tr:hover{background:#f7faf8}
+body.dark .rtable tbody tr:hover{background:#1a2e22}
+.rtable td{padding:10px 12px;font-size:.84rem;vertical-align:middle}
+.rbadge{width:27px;height:27px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-weight:800;font-size:.76rem}
+.r1{background:linear-gradient(135deg,#ffd700,#e8c84b);color:#5a3e00}
+.r2{background:linear-gradient(135deg,#c0c0c0,#9ca3af);color:#222}
+.r3{background:linear-gradient(135deg,#cd7f32,#a0522d);color:#fff}
+.roth{background:#e4ede7;color:#6b8a78}
+body.dark .roth{background:#1a2e22;color:#6a9f82}
+.scell{display:flex;align-items:center;gap:8px}
+.sav{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#0a5c36,#16a05f);display:flex;align-items:center;justify-content:center;color:#fff;font-size:.9rem;flex-shrink:0;overflow:hidden}
+.sav img{width:100%;height:100%;object-fit:cover}
+.sname{font-weight:700;font-size:.85rem}
+.sreg2{font-size:.7rem;color:#6b8a78}
+.sbar-w{display:flex;align-items:center;gap:6px}
+.sbar{flex:1;height:5px;background:#e4ede7;border-radius:3px;overflow:hidden;min-width:50px}
+body.dark .sbar{background:#1a2e22}
+.sbarf{height:100%;border-radius:3px;background:linear-gradient(90deg,#0a5c36,#16a05f)}
+.snum{font-weight:800;color:#0a5c36;font-size:.84rem;min-width:26px;text-align:right}
+body.dark .snum{color:#16a05f}
+.sdiff{font-size:.7rem;font-weight:700;padding:1px 6px;border-radius:4px}
+.sdiff.up{background:rgba(10,92,54,.1);color:#0a5c36}
+.sdiff.dn{background:rgba(220,38,38,.08);color:#dc2626}
+.sdiff.eq{background:#e4ede7;color:#6b8a78}
+body.dark .sdiff.up{color:#16a05f}
+.sbadge{display:inline-block;padding:2px 8px;border-radius:20px;font-size:.68rem;font-weight:700}
+.sa{background:rgba(10,92,54,.1);color:#0a5c36}
+body.dark .sa{color:#16a05f}
+.sm{background:rgba(245,166,35,.12);color:#c47a00}
+.sp{background:rgba(156,163,175,.12);color:#6b8a78}
+.pager{display:flex;justify-content:center;gap:5px;margin-top:18px}
+.pbtn{width:32px;height:32px;border-radius:7px;background:#fff;border:1px solid #d1e0d7;cursor:pointer;font-size:.81rem;color:#3a5a47;transition:.2s;display:flex;align-items:center;justify-content:center}
+body.dark .pbtn{background:#132218;border-color:#1f3d2b;color:#9bcfb0}
+.pbtn:hover,.pbtn.on{background:#0a5c36;color:#fff;border-color:#0a5c36}
+
+/* TUMAN STATS */
+.tuman-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:20px}
+.ttab{padding:7px 14px;border-radius:20px;border:1px solid #d1e0d7;background:#fff;color:#3a5a47;font-size:.8rem;font-weight:600;cursor:pointer;font-family:Georgia,serif;transition:.2s}
+body.dark .ttab{background:#132218;border-color:#1f3d2b;color:#9bcfb0}
+.ttab:hover,.ttab.on{background:#0a5c36;color:#fff;border-color:#0a5c36}
+.tuman-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;margin-bottom:28px}
+.tuman-card{background:#fff;border:1px solid #d1e0d7;border-radius:13px;padding:17px;box-shadow:0 2px 10px rgba(10,92,54,.08);transition:.25s}
+body.dark .tuman-card{background:#132218;border-color:#1f3d2b}
+.tuman-card:hover{transform:translateY(-3px);box-shadow:0 6px 18px rgba(10,92,54,.13)}
+.tuman-name{font-weight:800;font-size:.92rem;margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.tuman-stat-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:7px;font-size:.8rem}
+.tuman-stat-label{color:#6b8a78}
+.tuman-stat-val{font-weight:700;color:#0a5c36}
+body.dark .tuman-stat-val{color:#16a05f}
+.tuman-bar{width:100%;height:6px;background:#e4ede7;border-radius:3px;overflow:hidden;margin-top:8px}
+body.dark .tuman-bar{background:#1a2e22}
+.tuman-bar-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,#0a5c36,#16a05f)}
+/* CHART */
+.chart-wrap{background:#fff;border:1px solid #d1e0d7;border-radius:13px;padding:20px;box-shadow:0 2px 10px rgba(10,92,54,.08);margin-bottom:28px}
+body.dark .chart-wrap{background:#132218;border-color:#1f3d2b}
+.chart-title{font-weight:800;font-size:.95rem;margin-bottom:14px}
+.bar-chart{display:flex;align-items:flex-end;gap:8px;height:160px;padding-bottom:24px;position:relative}
+.bar-chart::after{content:'';position:absolute;bottom:24px;left:0;right:0;height:1px;background:#e4ede7}
+body.dark .bar-chart::after{background:#1f3d2b}
+.bcol{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;min-width:0}
+.bbar{width:100%;border-radius:5px 5px 0 0;background:linear-gradient(180deg,#16a05f,#0a5c36);transition:height .5s ease;cursor:pointer;position:relative}
+.bbar:hover{background:linear-gradient(180deg,#25d483,#16a05f)}
+.bval{font-size:.65rem;font-weight:700;color:#0a5c36;white-space:nowrap}
+body.dark .bval{color:#16a05f}
+.blabel{font-size:.6rem;color:#6b8a78;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%;text-align:center}
+
+/* CALENDAR */
+.cal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.cal-nav{background:none;border:1px solid #d1e0d7;border-radius:8px;cursor:pointer;padding:6px 12px;font-size:.85rem;color:#3a5a47;font-family:Georgia,serif;transition:.2s}
+body.dark .cal-nav{border-color:#1f3d2b;color:#9bcfb0}
+.cal-nav:hover{background:#0a5c36;color:#fff;border-color:#0a5c36}
+.cal-month{font-weight:800;font-size:1rem}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.cal-day-name{text-align:center;font-size:.72rem;font-weight:700;color:#6b8a78;padding:6px 0}
+.cal-day{min-height:62px;border-radius:9px;padding:6px;font-size:.78rem;background:#fff;border:1px solid #e4ede7;cursor:pointer;transition:.2s;position:relative}
+body.dark .cal-day{background:#132218;border-color:#1f3d2b}
+.cal-day:hover{border-color:#0a5c36;background:#f7faf8}
+body.dark .cal-day:hover{background:#1a2e22}
+.cal-day.today{border-color:#0a5c36;background:rgba(10,92,54,.05)}
+.cal-day.has-event::after{content:'';position:absolute;bottom:5px;left:50%;transform:translateX(-50%);width:5px;height:5px;border-radius:50%;background:#0a5c36}
+body.dark .cal-day.has-event::after{background:#16a05f}
+.cal-day.other{opacity:.35}
+.cal-num{font-weight:700;margin-bottom:3px}
+.cal-ev{font-size:.65rem;background:rgba(10,92,54,.12);color:#0a5c36;border-radius:3px;padding:1px 4px;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+body.dark .cal-ev{color:#16a05f}
+.event-list{margin-top:18px}
+.ev-item{background:#fff;border:1px solid #d1e0d7;border-radius:10px;padding:13px 15px;margin-bottom:9px;display:flex;gap:12px;align-items:flex-start;box-shadow:0 1px 6px rgba(10,92,54,.06);transition:.2s}
+body.dark .ev-item{background:#132218;border-color:#1f3d2b}
+.ev-item:hover{transform:translateX(3px)}
+.ev-date-box{background:linear-gradient(135deg,#0a5c36,#16a05f);color:#fff;border-radius:8px;padding:8px 10px;text-align:center;min-width:46px}
+.ev-day{font-size:1.3rem;font-weight:900;line-height:1}
+.ev-mon{font-size:.65rem;opacity:.85}
+.ev-title{font-weight:700;font-size:.9rem;margin-bottom:3px}
+.ev-desc{font-size:.78rem;color:#6b8a78;line-height:1.5}
+
+/* BALL BERISH */
+.ball-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:14px}
+.ball-card{background:#fff;border:1px solid #d1e0d7;border-radius:13px;padding:16px;box-shadow:0 2px 10px rgba(10,92,54,.08);transition:.25s}
+body.dark .ball-card{background:#132218;border-color:#1f3d2b}
+.ball-card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(10,92,54,.12)}
+.ball-header{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.ball-av{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#0a5c36,#16a05f);display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.1rem;flex-shrink:0;overflow:hidden}
+.ball-av img{width:100%;height:100%;object-fit:cover}
+.ball-name{font-weight:700;font-size:.9rem}
+.ball-region{font-size:.73rem;color:#6b8a78}
+.ball-cur{font-size:1.4rem;font-weight:900;color:#0a5c36;text-align:center;margin-bottom:10px}
+body.dark .ball-cur{color:#16a05f}
+.ball-cur span{font-size:.75rem;font-weight:400;color:#6b8a78}
+.ball-actions{display:flex;gap:6px}
+.ball-input{flex:1;padding:7px 10px;border-radius:8px;border:1px solid #d1e0d7;background:#f0f4f1;color:#0d2018;font-size:.85rem;outline:none;font-family:Georgia,serif;text-align:center}
+body.dark .ball-input{background:#1a2e22;border-color:#1f3d2b;color:#e8f5ee}
+.ball-input:focus{border-color:#0a5c36}
+.btn-plus{padding:7px 12px;border-radius:8px;background:#0a5c36;color:#fff;border:none;cursor:pointer;font-weight:700;font-size:.82rem;transition:.2s}
+.btn-plus:hover{background:#16a05f}
+.btn-minus{padding:7px 12px;border-radius:8px;background:rgba(220,38,38,.1);color:#dc2626;border:1px solid rgba(220,38,38,.2);cursor:pointer;font-weight:700;font-size:.82rem;transition:.2s}
+.btn-minus:hover{background:rgba(220,38,38,.2)}
+
+/* TASK */
+.tgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:15px}
+.tcard{background:#fff;border:1px solid #d1e0d7;border-radius:13px;padding:17px;box-shadow:0 2px 10px rgba(10,92,54,.08);transition:.25s}
+body.dark .tcard{background:#132218;border-color:#1f3d2b}
+.tcard:hover{transform:translateY(-3px);box-shadow:0 8px 22px rgba(10,92,54,.13)}
+.thead2{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:10px}
+.ticon{font-size:1.8rem}
+.tpri{padding:3px 8px;border-radius:20px;font-size:.68rem;font-weight:700}
+.ph{background:rgba(220,38,38,.1);color:#dc2626}
+.pm{background:rgba(245,166,35,.1);color:#c47a00}
+.pl{background:rgba(59,130,246,.1);color:#2563eb}
+.ttitle{font-size:.95rem;font-weight:800;margin-bottom:5px}
+.tdesc{font-size:.8rem;color:#3a5a47;line-height:1.5;margin-bottom:12px}
+body.dark .tdesc{color:#9bcfb0}
+.tfoot{display:flex;align-items:center;justify-content:space-between}
+.tdl{font-size:.71rem;color:#6b8a78}
+.tpts{font-size:.8rem;font-weight:800;color:#0a5c36}
+body.dark .tpts{color:#16a05f}
+
+/* GALLERY */
+.ggrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:17px}
+.gcard{background:#fff;border:1px solid #d1e0d7;border-radius:13px;overflow:hidden;box-shadow:0 2px 10px rgba(10,92,54,.08);transition:.25s}
+body.dark .gcard{background:#132218;border-color:#1f3d2b}
+.gcard:hover{transform:translateY(-4px);box-shadow:0 8px 22px rgba(10,92,54,.13)}
+.gthumb{width:100%;height:145px;background:linear-gradient(135deg,#0a5c36,#16a05f);display:flex;align-items:center;justify-content:center;font-size:2.8rem}
+.gbody{padding:14px}
+.gtitle{font-weight:700;font-size:.9rem;margin-bottom:4px}
+.gmeta{font-size:.74rem;color:#6b8a78;margin-bottom:10px}
+.wbtn{padding:7px;border-radius:8px;background:#0a5c36;color:#fff;border:none;cursor:pointer;font-size:.78rem;font-weight:700;font-family:Georgia,serif;transition:.2s;width:100%}
+.wbtn:hover{background:#16a05f}
+
+/* NEWS */
+.ngrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:17px}
+.ncard{background:#fff;border:1px solid #d1e0d7;border-radius:13px;padding:17px;box-shadow:0 2px 10px rgba(10,92,54,.08);transition:.25s}
+body.dark .ncard{background:#132218;border-color:#1f3d2b}
+.ncard:hover{transform:translateY(-3px);box-shadow:0 8px 22px rgba(10,92,54,.13)}
+.ntag{display:inline-block;padding:3px 9px;border-radius:20px;background:rgba(10,92,54,.1);color:#0a5c36;font-size:.69rem;font-weight:700;margin-bottom:9px}
+body.dark .ntag{color:#16a05f}
+.ntitle{font-size:.97rem;font-weight:800;margin-bottom:6px;line-height:1.3}
+.nbody{font-size:.81rem;color:#3a5a47;line-height:1.6;margin-bottom:11px}
+body.dark .nbody{color:#9bcfb0}
+.ndate{font-size:.71rem;color:#6b8a78}
+
+/* MODALS */
+.moverlay{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:200;display:none;align-items:center;justify-content:center;backdrop-filter:blur(3px)}
+.moverlay.on{display:flex}
+.modal{background:#fff;border-radius:17px;box-shadow:0 20px 60px rgba(0,0,0,.3);width:92%;max-width:860px;max-height:88vh;overflow-y:auto}
+body.dark .modal{background:#132218}
+.mhead{padding:20px 24px 14px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #d1e0d7}
+body.dark .mhead{border-bottom-color:#1f3d2b}
+.mhead h2{font-size:1.3rem;color:#0d2018}
+body.dark .mhead h2{color:#e8f5ee}
+.mclose{width:32px;height:32px;border-radius:50%;background:#e4ede7;border:none;cursor:pointer;font-size:1rem;color:#3a5a47;display:flex;align-items:center;justify-content:center;transition:.2s}
+body.dark .mclose{background:#1a2e22;color:#9bcfb0}
+.mclose:hover{background:#d1e0d7}
+.atabs{display:flex;padding:0 24px;border-bottom:1px solid #d1e0d7;overflow-x:auto}
+body.dark .atabs{border-bottom-color:#1f3d2b}
+.atab{padding:12px 15px;background:none;border:none;cursor:pointer;font-size:.82rem;color:#6b8a78;font-weight:600;border-bottom:2px solid transparent;transition:.2s;white-space:nowrap;font-family:Georgia,serif}
+.atab.on{color:#0a5c36;border-bottom-color:#0a5c36}
+body.dark .atab.on{color:#16a05f;border-bottom-color:#16a05f}
+.apanel{padding:20px 24px}
+.asec{display:none}.asec.on{display:block}
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+.fg{display:flex;flex-direction:column;gap:4px}
+.fg.full{grid-column:1/-1}
+.flabel{font-size:.77rem;font-weight:700;color:#3a5a47}
+body.dark .flabel{color:#9bcfb0}
+.finput,.fselect,.ftarea{padding:8px 12px;border-radius:9px;border:1px solid #d1e0d7;background:#f0f4f1;color:#0d2018;font-size:.85rem;outline:none;transition:.2s;font-family:Georgia,serif}
+body.dark .finput,body.dark .fselect,body.dark .ftarea{background:#1a2e22;border-color:#1f3d2b;color:#e8f5ee}
+.finput:focus,.fselect:focus,.ftarea:focus{border-color:#0a5c36;background:#fff}
+body.dark .finput:focus,body.dark .fselect:focus,body.dark .ftarea:focus{background:#132218}
+.ftarea{resize:vertical;min-height:72px}
+.sbtn{padding:9px 20px;border-radius:9px;background:#0a5c36;color:#fff;border:none;cursor:pointer;font-size:.85rem;font-weight:700;font-family:Georgia,serif;transition:.2s;margin-top:12px}
+.sbtn:hover{background:#16a05f;box-shadow:0 4px 13px rgba(10,92,54,.25)}
+.sbtn.red{background:#dc2626;margin-top:0}
+.sbtn.red:hover{background:#b91c1c}
+.sbtn.blue{background:#2196F3;margin-top:0}
+.sbtn.blue:hover{background:#1565C0}
+.alist{list-style:none;display:flex;flex-direction:column;gap:8px;margin-top:16px}
+.aitem{background:#f7faf8;border:1px solid #d1e0d7;border-radius:10px;padding:11px 13px;display:flex;align-items:center;justify-content:space-between;gap:9px}
+body.dark .aitem{background:#1a2e22;border-color:#1f3d2b}
+.ainfo{display:flex;align-items:center;gap:8px;flex:1;min-width:0}
+.aav{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#0a5c36,#16a05f);display:flex;align-items:center;justify-content:center;color:#fff;font-size:.9rem;flex-shrink:0;overflow:hidden}
+.aav img{width:100%;height:100%;object-fit:cover}
+.aname{font-weight:700;font-size:.85rem}
+.ameta{font-size:.7rem;color:#6b8a78;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.delbtn{padding:5px 10px;border-radius:7px;background:rgba(220,38,38,.1);color:#dc2626;border:none;cursor:pointer;font-size:.75rem;font-weight:700;font-family:Georgia,serif;transition:.2s;flex-shrink:0}
+.delbtn:hover{background:rgba(220,38,38,.2)}
+
+/* LOGIN */
+.login-overlay{position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:300;display:none;align-items:center;justify-content:center;backdrop-filter:blur(6px)}
+.login-overlay.on{display:flex}
+.login-box{background:#fff;border-radius:20px;box-shadow:0 24px 64px rgba(0,0,0,.3);width:90%;max-width:370px;padding:34px 30px;text-align:center}
+body.dark .login-box{background:#132218}
+.llogo{width:58px;height:58px;background:linear-gradient(135deg,#0a5c36,#16a05f);border-radius:15px;display:flex;align-items:center;justify-content:center;font-size:26px;margin:0 auto 16px}
+.ltitle{font-size:1.2rem;font-weight:800;color:#0d2018;margin-bottom:4px}
+body.dark .ltitle{color:#e8f5ee}
+.lsub{font-size:.8rem;color:#6b8a78;margin-bottom:22px}
+.linput{width:100%;padding:11px 15px;border-radius:10px;border:2px solid #d1e0d7;background:#f0f4f1;color:#0d2018;font-size:.93rem;outline:none;transition:.2s;font-family:Georgia,serif;text-align:center;letter-spacing:3px}
+body.dark .linput{background:#1a2e22;border-color:#1f3d2b;color:#e8f5ee}
+.linput:focus{border-color:#0a5c36;background:#fff}
+body.dark .linput:focus{background:#132218}
+.lbtn{width:100%;margin-top:13px;padding:11px;border-radius:10px;background:#0a5c36;color:#fff;border:none;cursor:pointer;font-size:.93rem;font-weight:700;font-family:Georgia,serif;transition:.2s}
+.lbtn:hover{background:#16a05f}
+.lerr{color:#dc2626;font-size:.8rem;margin-top:9px;display:none}
+.lerr.on{display:block}
+.lcancel{background:none;border:none;cursor:pointer;color:#6b8a78;font-size:.79rem;margin-top:9px;font-family:Georgia,serif;text-decoration:underline}
+.lcancel:hover{color:#0a5c36}
+
+/* TOAST */
+.tcs{position:fixed;bottom:20px;right:20px;z-index:999;display:flex;flex-direction:column;gap:6px}
+.toast{background:#fff;border:1px solid #d1e0d7;border-radius:10px;padding:11px 15px;box-shadow:0 8px 22px rgba(0,0,0,.12);display:flex;align-items:center;gap:8px;font-size:.83rem;animation:si .3s ease,fo .3s ease 2.7s forwards;max-width:290px}
+body.dark .toast{background:#132218;border-color:#1f3d2b;color:#e8f5ee}
+.toast.s{border-left:4px solid #0a5c36}
+.toast.i{border-left:4px solid #2196F3}
+.toast.w{border-left:4px solid #f59e0b}
+@keyframes si{from{transform:translateX(70px);opacity:0}to{transform:translateX(0);opacity:1}}
+@keyframes fo{to{opacity:0;transform:translateX(70px)}}
+
+/* MOBILE */
+@media(max-width:680px){
+  .nlinks{display:none}
+  .page{padding:18px 12px}
+  .fgrid{grid-template-columns:1fr}
+  .podium{flex-direction:column;align-items:center}
+  .pc{width:88%;max-width:290px;min-height:auto!important}
+  .apanel{padding:14px 16px}
+  .atabs{padding:0 14px}
+  .mhead{padding:14px 16px}
+  body{padding-bottom:66px}
+  .mnav{display:flex!important}
+}
+.mnav{position:fixed;bottom:0;left:0;right:0;z-index:100;background:#fff;border-top:1px solid #d1e0d7;display:none;padding:6px 0;box-shadow:0 -3px 14px rgba(10,92,54,.08)}
+body.dark .mnav{background:#132218;border-top-color:#1f3d2b}
+.mni{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:none;cursor:pointer;padding:5px 0}
+.mni .mi{font-size:1.1rem}
+.mni .ml{font-size:.6rem;color:#6b8a78;font-family:Georgia,serif}
+.mni.on .ml{color:#0a5c36;font-weight:700}
+body.dark .mni.on .ml{color:#16a05f}
+</style>
+</head>
+<body>
+
+<!-- NOTIFICATION BANNER -->
+<div class="notif-bar" id="notifBar">
+  <span id="notifMsg">📢 Yangi e'lon: Navro'z tadbirini tashkil etish uchun yangi topshiriq qo'shildi!</span>
+  <button class="notif-close" onclick="document.getElementById('notifBar').classList.remove('on')">✕</button>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nbrand">
+    <div class="nlogo">🌿</div>
+    <div>
+      <div class="ntitle">Sardorlar Platformasi</div>
+      <div class="nsub">Buxoro Viloyati</div>
+    </div>
+  </div>
+  <div class="nlinks">
+    <button class="on" onclick="show('dashboard',this)">📊 Bosh sahifa</button>
+    <button onclick="show('reyting',this)">🏆 Reyting</button>
+    <button onclick="show('tuman',this)">🗺 Tumanlar</button>
+    <button onclick="show('ball',this)">🏅 Ball berish</button>
+    <button onclick="show('kalend',this)">📅 Kalendar</button>
+    <button onclick="show('topshiriq',this)">📋 Topshiriqlar</button>
+    <button onclick="show('galereya',this)">🎥 Galereya</button>
+    <button onclick="show('yangilik',this)">📢 Yangiliklar</button>
+  </div>
+  <div class="nright">
+    <button class="tbtn" onclick="toggleTheme()" title="Kunduz/Kecha">
+      <div class="tdot" id="tdot">☀️</div>
+    </button>
+    <button class="abtn" onclick="openAdmin()">⚙️ Admin</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-in">
+    <div class="hbadge">🌿 O'zbekiston Bolalar Tashkiloti · Buxoro Viloyati</div>
+    <h1>Sardorlar Faoliyat Platformasi</h1>
+    <p>Asilbek Maxsudov boshchiligida 4770 nafar sardorning faoliyati, reytingi va musobaqasi.</p>
+    <div class="hstats">
+      <div><div class="hsn" id="h1">4770</div><div class="hsl">Jami sardorlar</div></div>
+      <div><div class="hsn" id="h2">312</div><div class="hsl">Faol sardorlar</div></div>
+      <div><div class="hsn" id="h3">20</div><div class="hsl">Topshirilgan videolar</div></div>
+      <div><div class="hsn">12</div><div class="hsl">Tuman</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE -->
+<div class="page">
+
+  <!-- DASHBOARD -->
+  <div class="view on" id="v-dashboard">
+    <div class="sg" id="sg"></div>
+    <div class="stitle">🥇 Top 3 Sardorlar</div>
+    <div class="ssub">Eng ko'p ball to'plagan sardorlar</div>
+    <div class="podium" id="pod"></div>
+    <div class="stitle" style="margin-top:28px">📢 So'nggi Yangiliklar</div>
+    <div class="ssub">Barcha e'lonlar va yangiliklar</div>
+    <div class="ngrid" id="ln"></div>
+  </div>
+
+  <!-- REYTING -->
+  <div class="view" id="v-reyting">
+    <div class="stitle">🏆 Sardorlar Reytingi</div>
+    <div class="ssub">Barcha sardorlarning faoliyat ko'rsatkichlari</div>
+    <div class="rcontrols">
+      <input class="sinput" type="text" placeholder="🔍 Ism, ID yoki tuman bo'yicha qidirish..." id="srch" oninput="filt()">
+      <select class="fsel" id="regf" onchange="filt()">
+        <option value="">Barcha tumanlar</option>
+        <option>Buxoro tumani</option><option>Kogon tumani</option><option>G'ijduvon tumani</option>
+        <option>Shofirkon tumani</option><option>Vobkent tumani</option><option>Peshku tumani</option>
+        <option>Romitan tumani</option><option>Jondor tumani</option><option>Qorovulbozor tumani</option>
+        <option>Olot tumani</option><option>Qorako'l tumani</option><option>Ganjidarya tumani</option>
+      </select>
+      <select class="fsel" id="stf" onchange="filt()">
+        <option value="">Barcha holat</option>
+        <option>Faol</option><option>O'rta</option><option>Past</option>
+      </select>
+      <button class="rbtn on" id="rtab-all" onclick="setRtab('all',this)">Umumiy</button>
+      <button class="rbtn" id="rtab-month" onclick="setRtab('month',this)">Oylik</button>
+      <button class="rbtn" id="rtab-week" onclick="setRtab('week',this)">Haftalik</button>
+      <button class="rbtn" onclick="printReyting()">🖨️ Chop etish</button>
+      <button class="rbtn" onclick="exportCSV()">📤 CSV eksport</button>
+    </div>
+    <div class="twrap">
+      <table class="rtable">
+        <thead><tr>
+          <th>#</th><th>Sardor</th><th>Tuman</th><th>Ball</th><th>Dinamika</th><th>Holat</th><th>Murojaat</th>
+        </tr></thead>
+        <tbody id="rtbody"></tbody>
+      </table>
+    </div>
+    <div class="pager" id="pgr"></div>
+  </div>
+
+  <!-- TUMANLAR -->
+  <div class="view" id="v-tuman">
+    <div class="stitle">🗺 Tumanlar Statistikasi</div>
+    <div class="ssub">Har bir tuman bo'yicha faoliyat ko'rsatkichlari va grafik</div>
+    <div class="chart-wrap">
+      <div class="chart-title">📊 Tumanlar bo'yicha o'rtacha ball</div>
+      <div class="bar-chart" id="barChart"></div>
+    </div>
+    <div class="tuman-grid" id="tumanGrid"></div>
+  </div>
+
+  <!-- BALL BERISH -->
+  <div class="view" id="v-ball">
+    <div class="stitle">🏅 Ball Berish / Ayirish</div>
+    <div class="ssub">Faqat Admin: Sardorlarga ball qo'shing yoki ayiring</div>
+    <div style="display:flex;gap:9px;margin-bottom:18px;flex-wrap:wrap">
+      <input class="sinput" style="max-width:280px" type="text" placeholder="🔍 Sardor qidirish..." id="ballSrch" oninput="rBall()">
+    </div>
+    <div class="ball-grid" id="ballGrid"></div>
+  </div>
+
+  <!-- KALENDAR -->
+  <div class="view" id="v-kalend">
+    <div class="stitle">📅 Tadbir Kalendari</div>
+    <div class="ssub">Oylik rejalar va tadbirlar</div>
+    <div style="display:grid;grid-template-columns:1fr 320px;gap:20px;flex-wrap:wrap" id="calLayout">
+      <div>
+        <div class="cal-header">
+          <button class="cal-nav" onclick="changeMonth(-1)">‹ Oldingi</button>
+          <div class="cal-month" id="calTitle"></div>
+          <button class="cal-nav" onclick="changeMonth(1)">Keyingi ›</button>
+        </div>
+        <div class="cal-grid">
+          <div class="cal-day-name">Du</div><div class="cal-day-name">Se</div><div class="cal-day-name">Ch</div>
+          <div class="cal-day-name">Pa</div><div class="cal-day-name">Ju</div><div class="cal-day-name">Sh</div><div class="cal-day-name">Ya</div>
+        </div>
+        <div class="cal-grid" id="calGrid"></div>
+      </div>
+      <div>
+        <div class="stitle" style="font-size:1.1rem;margin-bottom:12px">📌 Tadbirlar ro'yxati</div>
+        <div class="event-list" id="evList"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOPSHIRIQLAR -->
+  <div class="view" id="v-topshiriq">
+    <div class="stitle">📋 Faol Topshiriqlar</div>
+    <div class="ssub">Sardorlar uchun joriy vazifalar</div>
+    <div class="tgrid" id="tgrid"></div>
+  </div>
+
+  <!-- GALEREYA -->
+  <div class="view" id="v-galereya">
+    <div class="stitle">🎥 Video Galereya</div>
+    <div class="ssub">Sardorlar yuklagan faoliyat videolari</div>
+    <div class="ggrid" id="ggrid"></div>
+  </div>
+
+  <!-- YANGILIKLAR -->
+  <div class="view" id="v-yangilik">
+    <div class="stitle">📢 Yangiliklar va E'lonlar</div>
+    <div class="ssub">Barcha yangiliklar va e'lonlar</div>
+    <div class="ngrid" id="ngrid"></div>
+  </div>
+
+</div>
+
+<!-- MOBILE NAV -->
+<div class="mnav">
+  <button class="mni on" onclick="show('dashboard',null,this)"><span class="mi">📊</span><span class="ml">Bosh</span></button>
+  <button class="mni" onclick="show('reyting',null,this)"><span class="mi">🏆</span><span class="ml">Reyting</span></button>
+  <button class="mni" onclick="show('tuman',null,this)"><span class="mi">🗺</span><span class="ml">Tuman</span></button>
+  <button class="mni" onclick="show('ball',null,this)"><span class="mi">🏅</span><span class="ml">Ball</span></button>
+  <button class="mni" onclick="show('kalend',null,this)"><span class="mi">📅</span><span class="ml">Kalendar</span></button>
+  <button class="mni" onclick="show('yangilik',null,this)"><span class="mi">📢</span><span class="ml">Yangilik</span></button>
+</div>
+
+<!-- LOGIN MODAL -->
+<div class="login-overlay" id="loginModal">
+  <div class="login-box">
+    <div class="llogo">🔐</div>
+    <div class="ltitle">Admin Panelga Kirish</div>
+    <div class="lsub">Davom etish uchun parolni kiriting</div>
+    <input class="linput" type="password" id="loginPass" placeholder="••••••••" onkeydown="if(event.key==='Enter')checkLogin()">
+    <div class="lerr" id="loginErr">❌ Parol noto'g'ri! Qayta urinib ko'ring.</div>
+    <button class="lbtn" onclick="checkLogin()">🔓 Kirish</button><br>
+    <button class="lcancel" onclick="cancelLogin()">Bekor qilish</button>
+  </div>
+</div>
+
+<!-- ADMIN MODAL -->
+<div class="moverlay" id="adm">
+  <div class="modal">
+    <div class="mhead">
+      <h2>⚙️ Admin Panel</h2>
+      <button class="mclose" onclick="closeAdmin()">✕</button>
+    </div>
+    <div class="atabs">
+      <button class="atab on" onclick="atab('sardorlar',this)">👤 Sardorlar</button>
+      <button class="atab" onclick="atab('topshiriq',this)">📋 Topshiriqlar</button>
+      <button class="atab" onclick="atab('yangilik',this)">📢 Yangiliklar</button>
+      <button class="atab" onclick="atab('galereya',this)">🎥 Galereya</button>
+      <button class="atab" onclick="atab('events',this)">📅 Tadbirlar</button>
+      <button class="atab" onclick="atab('xabar',this)">💬 Xabar</button>
+      <button class="atab" onclick="atab('parol',this)">🔑 Parol</button>
+      <button class="atab" onclick="atab('cfg',this)">⚙️ Sozlama</button>
+    </div>
+    <div class="apanel">
+
+      <!-- SARDORLAR -->
+      <div class="asec on" id="as-sardorlar">
+        <h3 style="margin-bottom:13px;font-size:.97rem;font-weight:800">Yangi sardor qo'shish</h3>
+        <div class="fgrid">
+          <div class="fg"><label class="flabel">To'liq ismi *</label><input class="finput" id="sn" placeholder="Ism Familiya"></div>
+          <div class="fg"><label class="flabel">Tuman *</label>
+            <select class="fselect" id="sr">
+              <option>Buxoro tumani</option><option>Kogon tumani</option><option>G'ijduvon tumani</option>
+              <option>Shofirkon tumani</option><option>Vobkent tumani</option><option>Peshku tumani</option>
+              <option>Romitan tumani</option><option>Jondor tumani</option><option>Qorovulbozor tumani</option>
+              <option>Olot tumani</option><option>Qorako'l tumani</option><option>Ganjidarya tumani</option>
+            </select>
+          </div>
+          <div class="fg"><label class="flabel">Telegram @username</label><input class="finput" id="st" placeholder="@username"></div>
+          <div class="fg"><label class="flabel">Ball (0–100)</label><input class="finput" type="number" id="ss" placeholder="0" min="0" max="100"></div>
+          <div class="fg"><label class="flabel">Sardor rasmi URL (ixtiyoriy)</label><input class="finput" id="simg" placeholder="https://..."></div>
+          <div class="fg full"><label class="flabel">Faoliyat ta'rifi</label><textarea class="ftarea" id="sd" placeholder="Sardorning faoliyati..."></textarea></div>
+        </div>
+        <button class="sbtn" onclick="addS()">✅ Sardor qo'shish</button>
+        <button class="sbtn blue" style="margin-left:8px" onclick="exportCSV()">📤 CSV eksport</button>
+        <div style="margin-top:18px;font-weight:800;font-size:.88rem">Mavjud sardorlar: <span id="scount">0</span></div>
+        <ul class="alist" id="slist"></ul>
+      </div>
+
+      <!-- TOPSHIRIQ -->
+      <div class="asec" id="as-topshiriq">
+        <h3 style="margin-bottom:13px;font-size:.97rem;font-weight:800">Yangi topshiriq qo'shish</h3>
+        <div class="fgrid">
+          <div class="fg"><label class="flabel">Topshiriq nomi *</label><input class="finput" id="tn" placeholder="Topshiriq nomi"></div>
+          <div class="fg"><label class="flabel">Muhimlik</label>
+            <select class="fselect" id="tp"><option value="ph">Yuqori</option><option value="pm">O'rta</option><option value="pl">Past</option></select>
+          </div>
+          <div class="fg full"><label class="flabel">Ta'rif</label><textarea class="ftarea" id="td" placeholder="Topshiriq haqida batafsil..."></textarea></div>
+          <div class="fg"><label class="flabel">Muddat</label><input class="finput" type="date" id="tdl"></div>
+          <div class="fg"><label class="flabel">Ball</label><input class="finput" type="number" id="tpts" placeholder="10"></div>
+          <div class="fg"><label class="flabel">Emoji</label><input class="finput" id="te" placeholder="📋" maxlength="2"></div>
+        </div>
+        <button class="sbtn" onclick="addT()">✅ Topshiriq qo'shish</button>
+        <ul class="alist" id="tlist"></ul>
+      </div>
+
+      <!-- YANGILIK -->
+      <div class="asec" id="as-yangilik">
+        <h3 style="margin-bottom:13px;font-size:.97rem;font-weight:800">Yangilik qo'shish</h3>
+        <div class="fgrid">
+          <div class="fg full"><label class="flabel">Sarlavha *</label><input class="finput" id="nn" placeholder="Yangilik sarlavhasi"></div>
+          <div class="fg full"><label class="flabel">Matn *</label><textarea class="ftarea" id="nb" placeholder="Yangilik matni..." style="min-height:85px"></textarea></div>
+          <div class="fg"><label class="flabel">Teg</label><input class="finput" id="ntg" placeholder="E'lon"></div>
+          <div class="fg"><label class="flabel">🔔 Bildirishnoma yuborish</label>
+            <select class="fselect" id="nsend"><option value="1">Ha, bannerda ko'rsatish</option><option value="0">Yo'q</option></select>
+          </div>
+        </div>
+        <button class="sbtn" onclick="addN()">✅ Yangilik qo'shish</button>
+        <ul class="alist" id="nlist"></ul>
+      </div>
+
+      <!-- GALEREYA -->
+      <div class="asec" id="as-galereya">
+        <h3 style="margin-bottom:13px;font-size:.97rem;font-weight:800">Video qo'shish</h3>
+        <div class="fgrid">
+          <div class="fg"><label class="flabel">Video nomi *</label><input class="finput" id="vn" placeholder="Video nomi"></div>
+          <div class="fg"><label class="flabel">Sardor ismi</label><input class="finput" id="vs" placeholder="Sardor ismi"></div>
+          <div class="fg full"><label class="flabel">Video havolasi</label><input class="finput" id="vu" placeholder="https://..."></div>
+          <div class="fg"><label class="flabel">Emoji</label><input class="finput" id="ve" placeholder="🎬" maxlength="2"></div>
+        </div>
+        <button class="sbtn" onclick="addV()">✅ Video qo'shish</button>
+        <ul class="alist" id="vlist"></ul>
+      </div>
+
+      <!-- TADBIRLAR -->
+      <div class="asec" id="as-events">
+        <h3 style="margin-bottom:13px;font-size:.97rem;font-weight:800">Tadbir qo'shish</h3>
+        <div class="fgrid">
+          <div class="fg"><label class="flabel">Tadbir nomi *</label><input class="finput" id="evn" placeholder="Tadbir nomi"></div>
+          <div class="fg"><label class="flabel">Sana *</label><input class="finput" type="date" id="evd"></div>
+          <div class="fg full"><label class="flabel">Ta'rif</label><textarea class="ftarea" id="evdesc" placeholder="Tadbir haqida..."></textarea></div>
+          <div class="fg"><label class="flabel">Tuman</label>
+            <select class="fselect" id="evr">
+              <option value="">Barcha tumanlar</option>
+              <option>Buxoro tumani</option><option>Kogon tumani</option><option>G'ijduvon tumani</option>
+              <option>Shofirkon tumani</option><option>Vobkent tumani</option><option>Peshku tumani</option>
+            </select>
+          </div>
+        </div>
+        <button class="sbtn" onclick="addEv()">✅ Tadbir qo'shish</button>
+        <ul class="alist" id="evlist"></ul>
+      </div>
+
+      <!-- XABAR -->
+      <div class="asec" id="as-xabar">
+        <h3 style="margin-bottom:13px;font-size:.97rem;font-weight:800">💬 Sardorlarga xabar yuborish</h3>
+        <p style="font-size:.82rem;color:#6b8a78;margin-bottom:16px;line-height:1.5">Telegram bot orqali barcha sardorlarga yoki alohida tuman sardorlariga xabar yuboring.</p>
+        <div class="fgrid">
+          <div class="fg"><label class="flabel">Xabar turi</label>
+            <select class="fselect" id="msgtype">
+              <option value="all">Barcha sardorlarga</option>
+              <option value="region">Tuman bo'yicha</option>
+              <option value="top">Faqat Top 10 sardorlarga</option>
+            </select>
+          </div>
+          <div class="fg"><label class="flabel">Tuman (agar tuman bo'yicha)</label>
+            <select class="fselect" id="msgreg">
+              <option value="">Tanlang...</option>
+              <option>Buxoro tumani</option><option>Kogon tumani</option><option>G'ijduvon tumani</option>
+              <option>Shofirkon tumani</option><option>Vobkent tumani</option><option>Peshku tumani</option>
+            </select>
+          </div>
+          <div class="fg full"><label class="flabel">Xabar matni *</label><textarea class="ftarea" id="msgtext" placeholder="Xabar matni..." style="min-height:100px"></textarea></div>
+        </div>
+        <button class="sbtn" onclick="sendMsg()">📨 Xabar yuborish</button>
+        <div style="margin-top:16px;padding:13px;background:#f0f4f1;border-radius:10px;font-size:.8rem;color:#3a5a47;line-height:1.6" id="msgPreview">
+          <b>ℹ️ Qanday ishlaydi?</b><br>
+          Xabar yuborilganda quyidagi sardorlar ro'yxati va Telegram havolalari ko'rinadi. Siz ularning har biriga @username orqali xabar yuborishingiz mumkin.
+        </div>
+      </div>
+
+      <!-- PAROL -->
+      <div class="asec" id="as-parol">
+        <h3 style="margin-bottom:13px;font-size:.97rem;font-weight:800">🔑 Parolni o'zgartirish</h3>
+        <div class="fgrid">
+          <div class="fg full"><label class="flabel">Joriy parol</label><input class="finput" type="password" id="oldpass" placeholder="Joriy parolingiz"></div>
+          <div class="fg"><label class="flabel">Yangi parol</label><input class="finput" type="password" id="newpass" placeholder="Yangi parol"></div>
+          <div class="fg"><label class="flabel">Yangi parolni tasdiqlash</label><input class="finput" type="password" id="newpass2" placeholder="Qayta kiriting"></div>
+        </div>
+        <button class="sbtn" onclick="changePass()">🔑 Parolni o'zgartirish</button>
+        <div class="lerr" id="passErr" style="display:none;margin-top:8px"></div>
+      </div>
+
+      <!-- SOZLAMA -->
+      <div class="asec" id="as-cfg">
+        <h3 style="margin-bottom:13px;font-size:.97rem;font-weight:800">⚙️ Hero statistikasini yangilash</h3>
+        <div class="fgrid">
+          <div class="fg"><label class="flabel">Faol sardorlar soni</label><input class="finput" type="number" id="ca" placeholder="312"></div>
+          <div class="fg"><label class="flabel">Topshirilgan videolar</label><input class="finput" type="number" id="cv" placeholder="20"></div>
+        </div>
+        <button class="sbtn" onclick="saveCfg()">💾 Saqlash</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="tcs" id="tcs"></div>
+
+<script>
+// =====================================================
+// DATABASE
+// =====================================================
+var ADMIN_PASS = 'noyabr13112008';
+
+var DB = {
+  sardorlar: [
+    {id:1,name:"Shofirkon",region:"Shofirkon tumani",tg:"muzaffarova162",score:743,scoreW:743,scoreM:743,desc:"Ijodiy video tayyorladi, 50+ ishtirokchi jalb etdi",em:"🥇",img:""},
+    {id:2,name:"G'ijduvon",region:"G'ijduvon tumani",tg:"maktab_sardori_gijduvon",score:734,scoreW:734,scoreM:734,desc:"Sumalak tayyorlash tadbirini tashkil etdi",em:"🥈",img:""},
+    {id:3,name:"Qorako'l",region:"Qorako'l tumani",tg:"zarshidqurbonov",score:451,scoreW:451,scoreM:451,desc:"Mahalla obodonlashtirish ishlarida faol qatnashdi",em:"🥉",img:""},
+    {id:4,name:"Buxoro",region:"Buxoro tumani",tg:"",score:290,scoreW:290,scoreM:290,desc:"Navro'z va Mustaqillik tadbirlarini faol tashkil etdi",em:"🎗",img:""},
+    {id:5,name:"Nazarova Nilufar",region:"Kogon tumani",tg:"nilufar_kogon",score:80,scoreW:78,scoreM:80,desc:"Eng birinchi video topshirdi, sport tadbirlarini uyushtirdi",em:"🎗",img:""},
+    {id:6,name:"Qodirov Mansur",region:"Vobkent tumani",tg:"mansur_vobkent",score:74,scoreW:72,scoreM:74,desc:"Mahalla sport musobaqasini uyushtirdi",em:"🎗",img:""},
+    {id:7,name:"Yusupova Zulfiya",region:"Romitan tumani",tg:"zulfiya_romitan",score:70,scoreW:68,scoreM:70,desc:"Kitob o'qish tadbirini tashkil etdi",em:"🎗",img:""},
+    {id:8,name:"Ergashev Dilshod",region:"Jondor tumani",tg:"dilshod_jondor",score:66,scoreW:63,scoreM:66,desc:"Faol ijtimoiy tarmoq sardori",em:"🎗",img:""},
+    {id:9,name:"Mirzayeva Oydin",region:"Peshku tumani",tg:"oydin_peshku",score:61,scoreW:58,scoreM:61,desc:"Bolalar uchun kreativ mashg'ulotlar uyushtirdi",em:"🎗",img:""},
+    {id:10,name:"Haydarov Sardor",region:"Olot tumani",tg:"sardor_olot",score:55,scoreW:52,scoreM:55,desc:"Yangi a'zolarni jalb qildi",em:"🎗",img:""}
+  ],
+  tasks:[
+    {id:1,title:"Navro'z tadbirini tashkil etish",desc:"O'z hududingizda Navro'z tadbirini o'tkazing va video tayyorlang.",pri:"ph",dl:"2026-03-21",pts:25,icon:"🌺"},
+    {id:2,title:"Sport musobaqasini uyushtirish",desc:"Bolalar o'rtasida sport musobaqasi — kamida 20 ishtirokchi.",pri:"pm",dl:"2026-04-15",pts:18,icon:"⚽"},
+    {id:3,title:"Kitob o'qish haftaligi",desc:"Mahallada kitob o'qish haftaligini e'lon qiling.",pri:"pl",dl:"2026-05-01",pts:12,icon:"📚"},
+    {id:4,title:"Ekologik tozalik aksiyasi",desc:"Hududingizda tozalik aksiyasi — natijani rasmga oling.",pri:"pm",dl:"2026-04-22",pts:15,icon:"♻️"}
+  ],
+  news:[
+    {id:1,title:"Yangi topshiriq e'lon qilindi!",body:"Navro'z tadbirini tashkil etish uchun yangi topshiriq qo'shildi. Eng faol sardorlarga mukofot beriladi.",tag:"Topshiriq",date:"19 Mart 2026"},
+    {id:2,title:"Top 3 sardorlar aniqlandi",body:"Bu hafta eng faol sardorlar aniqlandi. Birinchi o'rinni Shofirkon tuman sardorlari egalladi.",tag:"Natija",date:"22 Mart 2026"},
+    {id:3,title:"Platform yangilandi",body:"Sardorlar platformasi yangi dizayn va funksiyalar bilan yangilandi.",tag:"Yangilik",date:"22 Mart 2026"}
+  ],
+  videos:[
+    {id:1,title:"Navro'z tadbiri videosi",sardor:"Jasur Toshmatov",url:"#",em:"🌺"},
+    {id:2,title:"Sport musobaqasi videosi",sardor:"Bekzod Aliyev",url:"#",em:"⚽"},
+    {id:3,title:"Kitobxonlik tadbiri videosi",sardor:"Nilufar Nazarova",url:"#",em:"📚"}
+  ],
+  events:[
+    {id:1,name:"Navro'z bayrami",date:"2026-03-21",desc:"Barcha tumanlar uchun umumiy Navro'z tadbiri",region:""},
+    {id:2,name:"Sport musobaqasi",date:"2026-04-15",desc:"Buxoro tumani bolalari o'rtasida",region:"Buxoro tumani"},
+    {id:3,name:"Kitob o'qish haftaligi",date:"2026-05-01",desc:"Barcha sardorlar ishtirokida",region:""}
+  ],
+  cfg:{active:350,videos:20}
+};
+
+// =====================================================
+// LOCALSTORAGE — MA'LUMOTLARNI SAQLASH
+// =====================================================
+// localStorage o'chirildi
+
+var cp=1,pp=10,fd=[],rtab='all',nid=200;
+var calYear=2026,calMonth=2; // 0-indexed (2=March)
+
+function uid(){return ++nid}
+function g(id){return document.getElementById(id)}
+function v(id){return g(id)?g(id).value.trim():''}
+function c(id){if(g(id))g(id).value=''}
+
+// =====================================================
+// AVATAR HELPER
+// =====================================================
+function avatarHtml(s,size){
+  size=size||36;
+  if(s.img){
+    return '<div class="sav" style="width:'+size+'px;height:'+size+'px"><img src="'+s.img+'" onerror="this.parentNode.innerHTML=\''+s.em+'\'"></div>';
+  }
+  return '<div class="sav" style="width:'+size+'px;height:'+size+'px;font-size:'+(size*0.45)+'px">'+s.em+'</div>';
+}
+
+// =====================================================
+// RENDER ALL
+// =====================================================
+function renderAll(){
+  rStat();rPod();rReyting();rTask();rGallery();rNews();rTuman();rBall();rCalendar();rAdminLists();
+  g('h2').textContent=DB.cfg.active;
+  g('h3').textContent=DB.cfg.videos;
+}
+
+function rStat(){
+  var avg=Math.round(DB.sardorlar.reduce(function(s,x){return s+x.score},0)/DB.sardorlar.length);
+  var items=[
+    {icon:"👥",num:DB.sardorlar.length,label:"Sardorlar soni"},
+    {icon:"🏆",num:DB.cfg.active,label:"Faol sardorlar"},
+    {icon:"🎥",num:DB.cfg.videos,label:"Topshirilgan videolar"},
+    {icon:"⭐",num:avg+"%",label:"O'rtacha faollik"}
+  ];
+  g('sg').innerHTML=items.map(function(i){
+    return '<div class="sc"><div class="sc-icon">'+i.icon+'</div><div class="sc-num">'+i.num+'</div><div class="sc-label">'+i.label+'</div></div>';
+  }).join('');
+}
+
+function rPod(){
+  var top3=DB.sardorlar.slice().sort(function(a,b){return b.score-a.score}).slice(0,3);
+  var cls=['gold','silver','bronze'],medals=['🥇','🥈','🥉'],prizes=['- Website','- Website','- Website'];
+  g('pod').innerHTML=top3.map(function(s,i){
+    var av=s.img?'<img src="'+s.img+'" style="width:64px;height:64px;border-radius:50%;object-fit:cover;margin:0 auto 9px;border:3px solid rgba(255,255,255,.8);display:block" onerror="this.outerHTML=\'<div class=pavatar>'+s.em+'</div>\'">'
+      :'<div class="pavatar">'+s.em+'</div>';
+    return '<div class="pc '+cls[i]+'">'
+      +'<div class="prank">'+medals[i]+'</div>'+av
+      +'<div class="pname">'+s.name+'</div>'
+      +'<div class="pregion">'+s.region+'</div>'
+      +'<div class="pscore">⭐ '+s.score+' ta ovoz '+prizes[i]+'</div>'
+      +'<a class="tgbtn" href="https://t.me/'+s.tg+'" target="_blank">✉️ Murojaat qilish</a>'
+      +'</div>';
+  }).join('');
+}
+
+function getScore(s){
+  if(rtab==='week') return s.scoreW||s.score;
+  if(rtab==='month') return s.scoreM||s.score;
+  return s.score;
+}
+
+function getSt(sc){
+  if(sc>=75) return {l:"Faol",c:"sa"};
+  if(sc>=50) return {l:"O'rta",c:"sm"};
+  return {l:"Past",c:"sp"};
+}
+
+function getDiff(s){
+  var cur=getScore(s);
+  var prev=s.scorePrev||Math.max(0,cur-Math.floor(Math.random()*10)-1);
+  var d=cur-prev;
+  if(d>0) return '<span class="sdiff up">▲ +'+d+'</span>';
+  if(d<0) return '<span class="sdiff dn">▼ '+d+'</span>';
+  return '<span class="sdiff eq">— 0</span>';
+}
+
+function filt(){cp=1;rReyting()}
+
+function setRtab(t,btn){
+  rtab=t;
+  document.querySelectorAll('.rbtn').forEach(function(b){b.classList.remove('on')});
+  btn.classList.add('on');
+  filt();
+}
+
+function rReyting(){
+  var s=(v('srch')||'').toLowerCase();
+  var r=v('regf')||'';
+  var st=v('stf')||'';
+  fd=DB.sardorlar.filter(function(x){
+    var sc=getScore(x);
+    return(!s||(x.name.toLowerCase().indexOf(s)>-1||x.region.toLowerCase().indexOf(s)>-1||('id'+x.id).indexOf(s)>-1))
+      &&(!r||x.region===r)&&(!st||getSt(sc).l===st);
+  }).sort(function(a,b){return getScore(b)-getScore(a)});
+  var mx=fd.length?Math.max.apply(null,fd.map(function(x){return getScore(x)})):100;
+  var tp=Math.ceil(fd.length/pp),st2=(cp-1)*pp,pg=fd.slice(st2,st2+pp);
+  g('rtbody').innerHTML=pg.map(function(s,idx){
+    var rk=st2+idx+1,rc=rk<=3?'r'+rk:'roth',sc=getScore(s),sts=getSt(sc);
+    return '<tr>'
+      +'<td><span class="rbadge '+rc+'">'+rk+'</span></td>'
+      +'<td><div class="scell">'+avatarHtml(s,36)+'<div><div class="sname">'+s.name+'</div><div class="sreg2">ID: '+s.id+' · '+s.desc+'</div></div></div></td>'
+      +'<td style="font-size:.81rem;color:#6b8a78">'+s.region+'</td>'
+      +'<td><div class="sbar-w"><div class="sbar"><div class="sbarf" style="width:'+Math.round(sc/mx*100)+'%"></div></div><span class="snum">'+sc+'</span></div></td>'
+      +'<td>'+getDiff(s)+'</td>'
+      +'<td><span class="sbadge '+sts.c+'">'+sts.l+'</span></td>'
+      +'<td><a class="tgbtn" href="https://t.me/'+s.tg+'" target="_blank" style="font-size:.72rem;padding:5px 10px">✉️ Telegram</a></td>'
+      +'</tr>';
+  }).join('');
+  var ph='';
+  if(tp>1){
+    if(cp>1) ph+='<button class="pbtn" onclick="gp('+(cp-1)+')">‹</button>';
+    for(var p=Math.max(1,cp-2);p<=Math.min(tp,cp+2);p++) ph+='<button class="pbtn'+(p===cp?' on':'')+'" onclick="gp('+p+')">'+p+'</button>';
+    if(cp<tp) ph+='<button class="pbtn" onclick="gp('+(cp+1)+')">›</button>';
+  }
+  g('pgr').innerHTML=ph;
+}
+function gp(p){cp=p;rReyting()}
+
+// TUMANLAR
+function rTuman(){
+  var tumanlar=["Buxoro tumani","Kogon tumani","G'ijduvon tumani","Shofirkon tumani","Vobkent tumani","Peshku tumani","Romitan tumani","Jondor tumani","Qorovulbozor tumani","Olot tumani","Qorako'l tumani","Ganjidarya tumani"];
+  var data=tumanlar.map(function(t){
+    var ss=DB.sardorlar.filter(function(s){return s.region===t});
+    var avg=ss.length?Math.round(ss.reduce(function(a,b){return a+b.score},0)/ss.length):0;
+    return {name:t,count:ss.length,avg:avg,top:ss.length?ss.reduce(function(a,b){return a.score>b.score?a:b},ss[0]):null};
+  });
+  var maxAvg=Math.max.apply(null,data.map(function(d){return d.avg}));
+
+  // Bar chart
+  var h=data.map(function(d){
+    var pct=maxAvg?Math.round(d.avg/maxAvg*100):0;
+    var shortName=d.name.replace(' tumani','');
+    return '<div class="bcol">'
+      +'<span class="bval">'+d.avg+'</span>'
+      +'<div class="bbar" style="height:'+Math.max(pct,3)+'%" title="'+d.name+': '+d.avg+' o\'rta ball"></div>'
+      +'<span class="blabel">'+shortName+'</span>'
+      +'</div>';
+  }).join('');
+  g('barChart').innerHTML=h;
+
+  // Cards
+  g('tumanGrid').innerHTML=data.map(function(d){
+    var pct=maxAvg?Math.round(d.avg/maxAvg*100):0;
+    return '<div class="tuman-card">'
+      +'<div class="tuman-name">🏘 '+d.name+'</div>'
+      +'<div class="tuman-stat-row"><span class="tuman-stat-label">Sardorlar soni</span><span class="tuman-stat-val">'+d.count+'</span></div>'
+      +'<div class="tuman-stat-row"><span class="tuman-stat-label">O\'rtacha ball</span><span class="tuman-stat-val">'+d.avg+'</span></div>'
+      +(d.top?'<div class="tuman-stat-row"><span class="tuman-stat-label">Top sardor</span><span class="tuman-stat-val" style="font-size:.78rem">'+d.top.name+'</span></div>':'')
+      +'<div class="tuman-bar"><div class="tuman-bar-fill" style="width:'+pct+'%"></div></div>'
+      +'</div>';
+  }).join('');
+}
+
+// BALL BERISH
+function rBall(){
+  var s=(g('ballSrch')?g('ballSrch').value.toLowerCase():'');
+  var filtered=DB.sardorlar.filter(function(x){return !s||x.name.toLowerCase().indexOf(s)>-1||x.region.toLowerCase().indexOf(s)>-1});
+  g('ballGrid').innerHTML=filtered.map(function(s){
+    return '<div class="ball-card">'
+      +'<div class="ball-header">'+avatarHtml(s,42)+'<div><div class="ball-name">'+s.name+'</div><div class="ball-region">'+s.region+'</div></div></div>'
+      +'<div class="ball-cur">'+s.score+' <span>ball</span></div>'
+      +'<div class="ball-actions">'
+      +'<input class="ball-input" type="number" id="bi_'+s.id+'" placeholder="miqdor" min="1" max="100">'
+      +'<button class="btn-plus" onclick="addBall('+s.id+',1)">+ Qo\'sh</button>'
+      +'<button class="btn-minus" onclick="addBall('+s.id+',-1)">− Ayir</button>'
+      +'</div></div>';
+  }).join('');
+}
+function addBall(id,sign){
+  var inp=g('bi_'+id);
+  var amt=parseInt(inp?inp.value:0)||0;
+  if(amt<=0){toast('Miqdorni kiriting ❌','w');return}
+  var s=DB.sardorlar.find(function(x){return x.id===id});
+  if(!s) return;
+  s.score=Math.max(0,Math.min(100,s.score+(amt*sign)));
+  s.scoreW=Math.max(0,Math.min(100,(s.scoreW||s.score)+(amt*sign)));
+  s.scoreM=Math.max(0,Math.min(100,(s.scoreM||s.score)+(amt*sign)));
+  if(inp) inp.value='';
+  renderAll();
+  toast(s.name+': '+(sign>0?'+':'−')+amt+' ball ✅');
+}
+
+// CALENDAR
+function rCalendar(){
+  var months=["Yanvar","Fevral","Mart","Aprel","May","Iyun","Iyul","Avgust","Sentabr","Oktabr","Noyabr","Dekabr"];
+  g('calTitle').textContent=months[calMonth]+' '+calYear;
+  var today=new Date();
+  var firstDay=new Date(calYear,calMonth,1);
+  var startDow=(firstDay.getDay()+6)%7; // Monday=0
+  var daysInMonth=new Date(calYear,calMonth+1,0).getDate();
+  var evMap={};
+  DB.events.forEach(function(ev){
+    var d=new Date(ev.date);
+    if(d.getFullYear()===calYear&&d.getMonth()===calMonth){
+      var key=d.getDate();
+      if(!evMap[key])evMap[key]=[];
+      evMap[key].push(ev);
+    }
+  });
+  var html='';
+  for(var i=0;i<startDow;i++) html+='<div class="cal-day other"></div>';
+  for(var d=1;d<=daysInMonth;d++){
+    var isToday=(d===today.getDate()&&calMonth===today.getMonth()&&calYear===today.getFullYear());
+    var hasEv=evMap[d]&&evMap[d].length>0;
+    var evHtml=hasEv?evMap[d].slice(0,2).map(function(e){return '<div class="cal-ev">'+e.name+'</div>'}).join(''):'';
+    html+='<div class="cal-day'+(isToday?' today':'')+(hasEv?' has-event':'')+'" onclick="selectDay('+d+')">'
+      +'<div class="cal-num">'+d+'</div>'+evHtml+'</div>';
+  }
+  g('calGrid').innerHTML=html;
+  var allEvs=DB.events.slice().sort(function(a,b){return new Date(a.date)-new Date(b.date)});
+  g('evList').innerHTML=allEvs.length?allEvs.map(function(ev){
+    var d=new Date(ev.date);
+    var ms=["Yan","Fev","Mar","Apr","May","Iyn","Iyl","Avg","Sen","Okt","Noy","Dek"];
+    return '<div class="ev-item">'
+      +'<div class="ev-date-box"><div class="ev-day">'+d.getDate()+'</div><div class="ev-mon">'+ms[d.getMonth()]+'</div></div>'
+      +'<div><div class="ev-title">'+ev.name+'</div><div class="ev-desc">'+ev.desc+(ev.region?' · '+ev.region:'')+'</div></div>'
+      +'</div>';
+  }).join(''):'<div style="color:#6b8a78;font-size:.85rem">Tadbir yo\'q</div>';
+}
+function changeMonth(d){calMonth+=d;if(calMonth<0){calMonth=11;calYear--}if(calMonth>11){calMonth=0;calYear++}rCalendar()}
+function selectDay(d){toast(d+'-'+(['Yan','Fev','Mar','Apr','May','Iyn','Iyl','Avg','Sen','Okt','Noy','Dek'][calMonth])+' '+calYear+' kuni tanlandi','i')}
+
+// TASK
+function rTask(){
+  var pl={ph:'Yuqori',pm:"O'rta",pl:'Past'};
+  g('tgrid').innerHTML=DB.tasks.map(function(t){
+    return '<div class="tcard"><div class="thead2"><div class="ticon">'+(t.icon||'📋')+'</div><span class="tpri '+(t.pri||'pm')+'">'+pl[t.pri]+'</span></div>'
+      +'<div class="ttitle">'+t.title+'</div><div class="tdesc">'+t.desc+'</div>'
+      +'<div class="tfoot"><span class="tdl">📅 '+t.dl+'</span><span class="tpts">+'+t.pts+' ball</span></div></div>';
+  }).join('');
+}
+
+// GALLERY
+function rGallery(){
+  g('ggrid').innerHTML=DB.videos.map(function(v){
+    return '<div class="gcard"><div class="gthumb">'+(v.em||'🎬')+'</div>'
+      +'<div class="gbody"><div class="gtitle">'+v.title+'</div><div class="gmeta">👤 '+v.sardor+'</div>'
+      +'<button class="wbtn" onclick="toast(\'Video tez orada qo\\\'shiladi 🎬\',\'i\')">▶ Ko\'rish</button></div></div>';
+  }).join('');
+}
+
+// NEWS
+function rNews(){
+  var h=DB.news.map(function(n){
+    return '<div class="ncard"><span class="ntag">'+(n.tag||'Yangilik')+'</span>'
+      +'<div class="ntitle">'+n.title+'</div><div class="nbody">'+n.body+'</div><div class="ndate">📅 '+n.date+'</div></div>';
+  }).join('');
+  if(g('ln'))g('ln').innerHTML=h;
+  if(g('ngrid'))g('ngrid').innerHTML=h;
+}
+
+// ADMIN LISTS
+function rAdminLists(){
+  g('scount').textContent=DB.sardorlar.length;
+  g('slist').innerHTML=DB.sardorlar.map(function(s){
+    return '<li class="aitem"><div class="ainfo">'+avatarHtml(s,36)+'<div><div class="aname">'+s.name+'</div><div class="ameta">'+s.region+' · Ball: '+s.score+' · @'+s.tg+'</div></div></div>'
+      +'<button class="delbtn" onclick="delS('+s.id+')">🗑</button></li>';
+  }).join('');
+  g('tlist').innerHTML=DB.tasks.map(function(t){
+    return '<li class="aitem"><div class="ainfo"><div class="aav">'+(t.icon||'📋')+'</div><div><div class="aname">'+t.title+'</div><div class="ameta">'+t.dl+' · +'+t.pts+' ball</div></div></div>'
+      +'<button class="delbtn" onclick="delT('+t.id+')">🗑</button></li>';
+  }).join('');
+  g('nlist').innerHTML=DB.news.map(function(n){
+    return '<li class="aitem"><div class="ainfo"><div class="aav">📢</div><div><div class="aname">'+n.title+'</div><div class="ameta">'+(n.tag||'')+' · '+n.date+'</div></div></div>'
+      +'<button class="delbtn" onclick="delN('+n.id+')">🗑</button></li>';
+  }).join('');
+  g('vlist').innerHTML=DB.videos.map(function(v){
+    return '<li class="aitem"><div class="ainfo"><div class="aav">'+(v.em||'🎬')+'</div><div><div class="aname">'+v.title+'</div><div class="ameta">'+(v.sardor||'')+'</div></div></div>'
+      +'<button class="delbtn" onclick="delV('+v.id+')">🗑</button></li>';
+  }).join('');
+  g('evlist').innerHTML=DB.events.map(function(ev){
+    return '<li class="aitem"><div class="ainfo"><div class="aav">📅</div><div><div class="aname">'+ev.name+'</div><div class="ameta">'+ev.date+(ev.region?' · '+ev.region:'')+'</div></div></div>'
+      +'<button class="delbtn" onclick="delEv('+ev.id+')">🗑</button></li>';
+  }).join('');
+}
+
+// =====================================================
+// CRUD
+// =====================================================
+function addS(){
+  var name=v('sn');if(!name){toast('Ism kiritilmadi ❌','w');return}
+  var ems=['👨','👩','🧑'];
+  DB.sardorlar.push({id:uid(),name:name,region:v('sr')||'Buxoro tumani',tg:v('st').replace('@',''),
+    score:parseInt(v('ss'))||0,scoreW:parseInt(v('ss'))||0,scoreM:parseInt(v('ss'))||0,
+    desc:v('sd'),em:ems[Math.floor(Math.random()*ems.length)],img:v('simg')});
+  ['sn','st','ss','sd','simg'].forEach(c);renderAll();toast(name+' qo\'shildi ✅');
+}
+function delS(id){DB.sardorlar=DB.sardorlar.filter(function(x){return x.id!==id});renderAll();toast("Sardor o'chirildi",'i')}
+
+function addT(){
+  var ti=v('tn');if(!ti){toast('Nom kiritilmadi ❌','w');return}
+  DB.tasks.push({id:uid(),title:ti,desc:v('td'),pri:v('tp')||'pm',dl:v('tdl'),pts:parseInt(v('tpts'))||10,icon:v('te')||'📋'});
+  ['tn','td','tdl','tpts','te'].forEach(c);renderAll();toast('Topshiriq qo\'shildi ✅');
+}
+function delT(id){DB.tasks=DB.tasks.filter(function(x){return x.id!==id});renderAll();toast("Topshiriq o'chirildi",'i')}
+
+function addN(){
+  var ti=v('nn');if(!ti){toast('Sarlavha kiritilmadi ❌','w');return}
+  var now=new Date(),ms=["Yan","Fev","Mar","Apr","May","Iyun","Iyul","Avg","Sen","Okt","Noy","Dek"];
+  DB.news.unshift({id:uid(),title:ti,body:v('nb'),tag:v('ntg')||'Yangilik',date:now.getDate()+' '+ms[now.getMonth()]+' '+now.getFullYear()});
+  if(v('nsend')==='1'){g('notifMsg').textContent='📢 '+ti;g('notifBar').classList.add('on')}
+  ['nn','nb','ntg'].forEach(c);renderAll();toast('Yangilik qo\'shildi ✅');
+}
+function delN(id){DB.news=DB.news.filter(function(x){return x.id!==id});renderAll();toast("Yangilik o'chirildi",'i')}
+
+function addV(){
+  var ti=v('vn');if(!ti){toast('Nom kiritilmadi ❌','w');return}
+  DB.videos.push({id:uid(),title:ti,sardor:v('vs'),url:v('vu')||'#',em:v('ve')||'🎬'});
+  ['vn','vs','vu','ve'].forEach(c);renderAll();toast('Video qo\'shildi ✅');
+}
+function delV(id){DB.videos=DB.videos.filter(function(x){return x.id!==id});renderAll();toast("Video o'chirildi",'i')}
+
+function addEv(){
+  var name=v('evn'),date=v('evd');
+  if(!name||!date){toast('Tadbir nomi va sanasini kiriting ❌','w');return}
+  DB.events.push({id:uid(),name:name,date:date,desc:v('evdesc'),region:v('evr')});
+  ['evn','evd','evdesc'].forEach(c);renderAll();toast('Tadbir qo\'shildi ✅');
+}
+function delEv(id){DB.events=DB.events.filter(function(x){return x.id!==id});renderAll();toast("Tadbir o'chirildi",'i')}
+
+function saveCfg(){
+  var a=parseInt(v('ca')),vi=parseInt(v('cv'));
+  if(a)DB.cfg.active=a;if(vi)DB.cfg.videos=vi;
+  renderAll();toast('Saqlandi ✅');
+}
+
+function changePass(){
+  var op=v('oldpass'),np=v('newpass'),np2=v('newpass2');
+  var err=g('passErr');
+  err.style.display='none';
+  if(op!==ADMIN_PASS){err.textContent='❌ Joriy parol noto\'g\'ri!';err.style.display='block';return}
+  if(np.length<6){err.textContent='❌ Yangi parol kamida 6 ta belgi bo\'lishi kerak!';err.style.display='block';return}
+  if(np!==np2){err.textContent='❌ Parollar mos kelmadi!';err.style.display='block';return}
+  ADMIN_PASS=np;['oldpass','newpass','newpass2'].forEach(c);
+  toast('Parol muvaffaqiyatli o\'zgartirildi ✅');
+}
+
+function sendMsg(){
+  var type=v('msgtype'),reg=v('msgreg'),text=v('msgtext');
+  if(!text){toast('Xabar matni kiriting ❌','w');return}
+  var targets=DB.sardorlar.filter(function(s){
+    if(type==='region') return s.region===reg;
+    if(type==='top') return DB.sardorlar.slice().sort(function(a,b){return b.score-a.score}).slice(0,10).find(function(x){return x.id===s.id});
+    return true;
+  });
+  var preview='<b>📨 Xabar yuboriladi ('+targets.length+' nafar sardorga):</b><br><br>';
+  preview+=targets.slice(0,8).map(function(s){return '• <a href="https://t.me/'+s.tg+'" target="_blank" style="color:#0a5c36">@'+s.tg+'</a> — '+s.name;}).join('<br>');
+  if(targets.length>8) preview+='<br>... va yana '+(targets.length-8)+' nafar';
+  preview+='<br><br><b>Xabar matni:</b><br>'+text;
+  g('msgPreview').innerHTML=preview;
+  toast('Ro\'yxat tayyorlandi! Telegram orqali yuboring ✅');
+}
+
+// =====================================================
+// EXPORT
+// =====================================================
+function exportCSV(){
+  var rows=[['ID','Ism','Tuman','Ball','Holat','Telegram']];
+  DB.sardorlar.slice().sort(function(a,b){return b.score-a.score}).forEach(function(s,i){
+    rows.push([s.id,s.name,s.region,s.score,getSt(s.score).l,'@'+s.tg]);
+  });
+  var csv=rows.map(function(r){return r.map(function(c){return '"'+String(c).replace(/"/g,'""')+'"'}).join(',')}).join('\n');
+  var blob=new Blob(['\uFEFF'+csv],{type:'text/csv;charset=utf-8'});
+  var a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download='sardorlar_'+new Date().toISOString().slice(0,10)+'.csv';
+  a.click();
+  toast('CSV eksport qilindi ✅');
+}
+
+function printReyting(){
+  var rows=fd.length?fd:DB.sardorlar.slice().sort(function(a,b){return b.score-a.score});
+  var html='<html><head><meta charset="UTF-8"><title>Sardorlar Reytingi</title>'
+    +'<style>body{font-family:Georgia,serif;padding:24px;color:#0d2018}h1{color:#0a5c36;margin-bottom:8px}p{color:#6b8a78;font-size:.85rem;margin-bottom:20px}table{width:100%;border-collapse:collapse}th{background:#0a5c36;color:#fff;padding:10px;text-align:left;font-size:.82rem}td{padding:9px 10px;border-bottom:1px solid #e4ede7;font-size:.85rem}tr:nth-child(even){background:#f7faf8}@media print{button{display:none}}</style>'
+    +'</head><body><h1>🏆 Sardorlar Reytingi</h1><p>Buxoro Viloyati OBT · '+new Date().toLocaleDateString('uz-UZ')+'</p>'
+    +'<table><thead><tr><th>#</th><th>Ism</th><th>Tuman</th><th>Ball</th><th>Holat</th><th>Telegram</th></tr></thead><tbody>'
+    +rows.map(function(s,i){return '<tr><td>'+(i+1)+'</td><td>'+s.name+'</td><td>'+s.region+'</td><td>'+getScore(s)+'</td><td>'+getSt(getScore(s)).l+'</td><td>@'+s.tg+'</td></tr>';}).join('')
+    +'</tbody></table></body></html>';
+  var w=window.open('','_blank');w.document.write(html);w.document.close();setTimeout(function(){w.print()},400);
+  toast('Chop etish oynasi ochildi 🖨️');
+}
+
+// =====================================================
+// UI
+// =====================================================
+function show(id,btn,mbtn){
+  document.querySelectorAll('.view').forEach(function(v){v.classList.remove('on')});
+  g('v-'+id).classList.add('on');
+  document.querySelectorAll('.nlinks button').forEach(function(b){b.classList.remove('on')});
+  if(btn)btn.classList.add('on');
+  document.querySelectorAll('.mni').forEach(function(b){b.classList.remove('on')});
+  if(mbtn)mbtn.classList.add('on');
+}
+
+function openAdmin(){g('loginModal').classList.add('on');setTimeout(function(){g('loginPass').focus()},100)}
+function cancelLogin(){g('loginModal').classList.remove('on');c('loginPass');g('loginErr').classList.remove('on')}
+function checkLogin(){
+  var pass=g('loginPass').value;
+  if(pass===ADMIN_PASS){
+    g('loginModal').classList.remove('on');c('loginPass');g('loginErr').classList.remove('on');
+    g('adm').classList.add('on');rAdminLists();toast('Xush kelibsiz, Admin! ✅');
+  }else{
+    g('loginErr').classList.add('on');c('loginPass');g('loginPass').focus();
+  }
+}
+function closeAdmin(){g('adm').classList.remove('on')}
+g('adm').onclick=function(e){if(e.target===this)closeAdmin()}
+
+function atab(id,btn){
+  document.querySelectorAll('.atab').forEach(function(b){b.classList.remove('on')});
+  document.querySelectorAll('.asec').forEach(function(s){s.classList.remove('on')});
+  btn.classList.add('on');g('as-'+id).classList.add('on');
+}
+
+function toggleTheme(){
+  document.body.classList.toggle('dark');
+  g('tdot').textContent=document.body.classList.contains('dark')?'🌙':'☀️';
+}
+
+function toast(msg,type){
+  type=type||'s';
+  var c=g('tcs'),t=document.createElement('div');
+  t.className='toast '+(type==='s'?'s':type==='w'?'w':'i');
+  t.innerHTML='<span>'+(type==='s'?'✅':type==='w'?'⚠️':'ℹ️')+'</span> '+msg;
+  c.appendChild(t);setTimeout(function(){if(t.parentNode)t.parentNode.removeChild(t)},3200);
+}
+
+// INIT
+renderAll();
+</script>
+</body>
+</html>
